@@ -2,13 +2,14 @@ package ru.stqa.pft.sandbox;
 
 public class DZ2 {
   public static void main(String[] args) {
-    Point p = new Point(1,10,50,100);
-
-    System.out.println("Расстояние между P1 c координатами " + p.x1 + ", " + p.y1 +
-            " и P2 с координатами "+ p.x2 + ", " + p.y2 +" = " + distance(p));
+    Point p1 = new Point(1,10);
+    Point p2 = new Point(5,100);
+    System.out.println("Расстояние между P1 c координатами " + p1.x + ", " + p1.y +
+            " и P2 с координатами "+ p2.x + ", " + p2.y +" = " + distance(p1,p2));
 
   }
-  public static double distance(Point p){
-    return Math.sqrt((p.x2-p.x1)*(p.x2-p.x1)+(p.y2- p.y1)*(p.y2- p.y1));
+  public static double distance(Point p1, Point p2){
+     return Math.sqrt((p2.x-p1.x)*(p2.x-p1.x)+(p2.y- p1.y)*(p2.y- p1.y));
+
   }
 }
