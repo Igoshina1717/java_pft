@@ -1,5 +1,5 @@
 .gradle
-build/
+/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -13,5 +13,3 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
-sandbox/build/tmp/compileJava/source-classes-mapping.txt
-sandbox/build/tmp/compileJava/source-classes-mapping.txt
