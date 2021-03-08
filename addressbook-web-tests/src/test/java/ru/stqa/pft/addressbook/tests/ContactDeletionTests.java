@@ -4,13 +4,13 @@ import org.testng.annotations.Test;
 
 public class ContactDeletionTests extends TestBase{
 
-
   @Test
-  public void testContactDeletion() throws Exception {
-
+  public void testGroupDeletion() {
     app.getNavigationHelper().gotoHomePage();
-    app.getContactHelper().editContact();
-    app.getContactHelper().deleteContact();
-  }
+    app.getContactHelper().selectContact();
+    app.getContactHelper().delete();
+    app.getContactHelper().accept();
+      }
+
 
 }

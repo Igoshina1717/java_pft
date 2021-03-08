@@ -1,10 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -27,15 +27,27 @@ public class ContactHelper extends HelperBase{
     type(By.name("email"), contactData.getEmail());
   }
 
-  public void deleteContact() {
-    click(By.xpath("(//input[@name='update'])[3]"));
+  public void gotoAddNewPage() {
+    click(By.linkText("add new"));
   }
 
-  public void editContact() {
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void delete() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void accept() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void modificationContact() {
     click(By.xpath("//img[@alt='Edit']"));
   }
 
-  public void gotoAddNewPage() {
-    click(By.linkText("add new"));
+  public void submitContactUpdate() {
+    click(By.xpath("//input[@name='update']"));
   }
 }
