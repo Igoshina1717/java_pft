@@ -11,7 +11,7 @@ public class GroupHelper extends HelperBase{
   }
 
   public void returnToGroupPage() {
-    click(By.linkText("Logout"));
+    click(By.linkText("group page"));
   }
 
   public void submitGroupCreation() {
@@ -53,5 +53,10 @@ public class GroupHelper extends HelperBase{
 
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getGroupCount() {
+    return wd.findElements(By.name("selected[]")).size();
+
   }
 }
