@@ -18,8 +18,14 @@ public class ContactCreationTests extends TestBase{
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size()+1);
 
+    int max = 0;
+    for (ContactData c : after){
+      if (c.getId()>max){
+        max = c.getId();
+      }
+    }
+    contact.setId(max);
     before.add(contact);
-
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
 
