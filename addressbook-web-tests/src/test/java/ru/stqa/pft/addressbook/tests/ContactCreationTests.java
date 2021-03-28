@@ -10,7 +10,7 @@ public class ContactCreationTests extends TestBase{
 
   @Test (enabled = false)
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     ContactData contact = new ContactData("Василий", "Репин", "Москва", "79112324433", "test@mail.ru");
     app.getContactHelper().createContact(contact);
