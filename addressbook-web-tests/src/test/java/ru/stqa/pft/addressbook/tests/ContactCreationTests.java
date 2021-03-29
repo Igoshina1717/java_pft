@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase{
 
-  @Test (enabled = false)
+  @Test
   public void testContactCreation() throws Exception {
     app.goTo().gotoHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
