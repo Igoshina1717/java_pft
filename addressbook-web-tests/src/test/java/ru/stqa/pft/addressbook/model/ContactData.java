@@ -38,6 +38,14 @@ public class ContactData {
     return email;
   }
 
+  public String getHomePhone() {
+    return home;
+  }
+
+  public String getWorkPhone() {
+    return work;
+  }
+
   public ContactData withId(int id) {
     this.id = id;
     return this;
