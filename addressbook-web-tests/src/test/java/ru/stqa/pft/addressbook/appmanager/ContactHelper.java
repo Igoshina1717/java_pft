@@ -5,11 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.Groups;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -51,8 +48,9 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void modificationContact() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void modificationContact(int id) {
+
+    wd.findElement(By.xpath("//tr["+id+"]/td[8]/a/img")).click();
   }
 
   public void submitContactUpdate() {
@@ -72,14 +70,15 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
     returnToHomePage();
   }
-  public void modify(ContactData contact) {
-    selectContactById(contact.getId());
-    modificationContact();
+
+  public void modify(int id, ContactData contact) {
+    modificationContact(id);
     fillContactForm(contact);
     submitContactUpdate();
     contactCache = null;
     returnToHomePage();
   }
+
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
