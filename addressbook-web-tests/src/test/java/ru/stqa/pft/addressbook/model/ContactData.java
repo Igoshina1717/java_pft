@@ -9,8 +9,6 @@ public class ContactData {
   private String address;
   private String mobile;
   private String email;
-  private String home;
-  private String work;
 
 
   public int getId() {
@@ -80,15 +78,6 @@ public class ContactData {
     this.email = email;
     return this;
   }
-  public ContactData withHomePhone(String home) {
-    this.home =home;
-    return this;
-  }
-
-  public ContactData withWorkPhone(String work) {
-    this.work = work;
-    return this;
-  }
   @Override
   public String toString() {
     return "ContactData{" +
@@ -97,6 +86,5 @@ public class ContactData {
             ", lastName='" + lastName + '\'' +
             '}';
   }
-
 
 }
