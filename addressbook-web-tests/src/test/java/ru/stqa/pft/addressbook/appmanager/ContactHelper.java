@@ -53,9 +53,9 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void modificationContact(int id) {
+  public void modificationContactById(int id) {
 
-    wd.findElement(By.xpath("//tr["+id+"]/td[8]/a/img")).click();
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s'", id))).click();
   }
 
   public void submitContactUpdate() {
@@ -76,8 +76,8 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public void modify(int id, ContactData contact) {
-    modificationContact(id);
+  public void modify(ContactData contact) {
+    modificationContactById(contact.getId());
     fillContactForm(contact);
     submitContactUpdate();
     contactCache = null;
