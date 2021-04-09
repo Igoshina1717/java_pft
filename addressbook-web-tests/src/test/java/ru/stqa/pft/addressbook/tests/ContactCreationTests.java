@@ -1,29 +1,47 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.*;
 
 public class ContactCreationTests extends TestBase{
+  @DataProvider
+  public Iterator<Object[]> validContacts() {
+    List<Object[]> list = new ArrayList<Object[]>();
+    list.add(new Object[]{new ContactData().withName("name1").withLastName("lastname1")
+            .withAddress("address1").withMobile("mobile1")
+            .withEmail("mail1").withPhoto(new File("src\\test\\resources\\stru.png"))});
+    list.add(new Object[]{new ContactData().withName("name2").withLastName("lastname2")
+            .withAddress("address2").withMobile("mobile2")
+            .withEmail("mail2").withPhoto(new File("src\\test\\resources\\stru.png"))});
+    list.add(new Object[]{new ContactData().withName("name3").withLastName("lastname3")
+            .withAddress("address3").withMobile("mobile3")
+            .withEmail("mail3").withPhoto(new File("src\\test\\resources\\stru.png"))});
 
-  @Test
-  public void testContactCreation() throws Exception {
-    app.goTo().HomePage();
-    Contacts before = app.contact().all();
-    File photo = new File("src\\test\\resources\\stru.png");
-    ContactData contact = new ContactData().withName("name").withLastName("lastName").withAddress("address")
-            .withMobile("mobile").withEmail("mail").withPhoto(photo);
-    app.contact().create(contact);
-    Contacts after = app.contact().all();
-    assertThat(app.contact().count(), equalTo(before.size()+1));
-    assertThat(after, equalTo(
-            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+    return list.iterator();
   }
+
+  @Test(dataProvider = "validContacts")
+  public void testContactCreation(ContactData contact) throws Exception {
+    String[] names = new String[] {"test", "test2", "test3"};
+      app.goTo().HomePage();
+      Contacts before = app.contact().all();
+      app.contact().create(contact);
+      Contacts after = app.contact().all();
+      assertThat(app.contact().count(), equalTo(before.size()+1));
+      assertThat(after, equalTo(
+              before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+    }
+
   @Test (enabled = false)
   public void testBadContactCreation() throws Exception {
     app.goTo().HomePage();
