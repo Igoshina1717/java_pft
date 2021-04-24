@@ -1,26 +1,18 @@
 <list>
   <contact>
-    <name>name 0</name>
-    <lastName>lastName 0</lastName>
-    <address>address 0</address>
-    <mobile>mobile 0</mobile>
-    <email>mail 0</email>
+    <name>name</name>
+    <lastName>lastName</lastName>
+    <address>address</address>
+    <mobile>mobile</mobile>
+    <email>mail</email>
     <photo>src\test\resources\stru.png</photo>
   </contact>
   <contact>
-    <name>name 1</name>
-    <lastName>lastName 1</lastName>
-    <address>address 1</address>
-    <mobile>mobile 1</mobile>
-    <email>mail 1</email>
-    <photo>src\test\resources\stru.png</photo>
-  </contact>
-  <contact>
-    <name>name 2</name>
-    <lastName>lastName 2</lastName>
-    <address>address 2</address>
-    <mobile>mobile 2</mobile>
-    <email>mail 2</email>
+    <name>name</name>
+    <lastName>lastName</lastName>
+    <address>address</address>
+    <mobile>mobile</mobile>
+    <email>mail</email>
     <photo>src\test\resources\stru.png</photo>
   </contact>
 </list>

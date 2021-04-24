@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -35,14 +36,19 @@ public class ContactCreationTests extends TestBase{
 
   @Test(dataProvider = "validContacts")
   public void testContactCreation(ContactData contact) throws Exception {
-      app.goTo().HomePage();
-      Contacts before = app.db().contacts();
-      app.contact().create(contact);
-      Contacts after = app.db().contacts();
-      assertThat(app.contact().count(), equalTo(before.size()+1));
-      assertThat(after, equalTo(
-              before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
-      verifyContactListInUI();
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/stru.png");
+    ContactData newContact = new ContactData().withName("name").withLastName("lastName").withAddress("address")
+            .withMobile("mobile").withEmail("mail").withPhoto(photo)
+            .inGroup(groups.iterator().next());
+    app.goTo().HomePage();
+    Contacts before = app.db().contacts();
+    app.contact().gotoAddNewPage();
+    app.contact().create(newContact);
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
+    Contacts after = app.db().contacts();
+    assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    verifyContactListInUI();
     }
 
   @Test (enabled = false)
