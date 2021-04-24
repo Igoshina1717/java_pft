@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class ContactHelper extends HelperBase {
     attach(By.name("photo"), contactData.getPhoto());
 
     if(creation){
-      if (contactData.getGroups() != null) {
+      if (contactData.getGroups().size() > 0) {
         Assert.assertTrue(contactData.getGroups().size() == 1);
         new Select (wd.findElement(By.name("new_group")))
                 .selectByVisibleText(contactData.getGroups().iterator().next().getName());
@@ -75,8 +76,23 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@name='update']"));
   }
 
+  public void goToGroupPageAfter() {
+    wd.findElement(By.partialLinkText("group page")).click();
+    /*wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();*/
+  }
+
   private void HomePage() { click(By.linkText("home")); }
 
+  public void selectGroupFromList(int groupId) {
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(groupId));
+  }
+  public void addToGroupButton() {
+    wd.findElement(By.name("add")).click();
+  }
+
+  private void delFromGroup() {
+    wd.findElement(By.name("remove")).click();
+  }
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -151,4 +167,21 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobile(mobile).withWorkPhone(work)
             .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
+
+  public void addContactToGroup(ContactData contactData, GroupData groupData) {
+    selectContactById(contactData.getId());
+    selectGroupFromList(groupData.getId());
+    addToGroupButton();
+    goToGroupPageAfter();
+    contactCache = null;
+  }
+
+  public void delContactFromGroup(ContactData contact, GroupData groupData) {
+    selectContactById(contact.getId());
+    delFromGroup();
+    goToGroupPageAfter();
+    contactCache = null;
+  }
+
+
 }
