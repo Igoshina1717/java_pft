@@ -1,4 +1,4 @@
-package ru.stqa.pft.mantis.appmanager.appmanager;
+package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.mantis.appmanager.model.GroupData;

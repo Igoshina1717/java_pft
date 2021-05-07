@@ -1,4 +1,4 @@
-package ru.stqa.pft.mantis.appmanager.appmanager;
+package ru.stqa.pft.mantis.appmanager;
 
 
 import org.openqa.selenium.WebDriver;
@@ -47,5 +47,10 @@ public class ApplicationManager {
     wd.quit();
   }
 
-
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+  public String getProperty(String key) {
+    return properties.getProperty(key);
+  }
 }
