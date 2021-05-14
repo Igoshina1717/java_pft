@@ -54,6 +54,7 @@ public class DelContactFromGroup extends TestBase {
     assertThat(after, equalTo(before.without(groupToDelFrom)));
   }
 
+
   private ContactData selectContactById(ContactData contact) {
     Contacts contactsById = app.db().contacts();
     return contactsById.iterator().next().withId(contact.getId());

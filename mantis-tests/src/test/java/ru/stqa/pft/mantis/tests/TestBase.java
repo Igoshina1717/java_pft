@@ -1,7 +1,6 @@
 package ru.stqa.pft.mantis.tests;
 
 import biz.futureware.mantis.rpc.soap.client.IssueData;
-import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
@@ -10,7 +9,6 @@ import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 
 import javax.xml.rpc.ServiceException;
 import java.io.File;
-import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
